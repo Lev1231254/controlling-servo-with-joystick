@@ -1,10 +1,10 @@
-#include <ServoSmooth.h> //используем библиотеку для работы с сервоприводом
+#include <ServoSmooth.h> 
 
-// пин подключения контакта VRX
+
 #define PIN_VRX A0
-// пин подключения контакта VRY
+
 #define PIN_VRY A1
-// пин подключения кнопки
+
 #define PIN_BUTTON 3
 
 int SPEED_CAP = 90;
@@ -18,11 +18,11 @@ void setup() {
   // put your setup code here, to run once:
   
   
-  servo.attach(10); //привязываем привод к порту 10
+  servo.attach(10);
   
-  servo.setAccel(0.5); //accelaration
-  servo.setAutoDetach(false); //auto detaching
-  servo.setSpeed(60); //speed(will be changed)
+  servo.setAccel(0.5);
+  servo.setAutoDetach(false);
+  servo.setSpeed(60);
   Serial.begin (9600);
 }
 
@@ -47,10 +47,11 @@ double toSpeed(int analog) {
   
   double speed = 2 * abs(analog - 512) * CONST1;
   
-  //made to not have speed greater than speed cap
+  //cant have speed greater than speed cap
   if (speed > SPEED_CAP) {
-    return 90;
+    return SPEED_CAP;
   }
   
   return floor(speed);
 }
+
